@@ -17,10 +17,10 @@ public class MockService {
 	}
 
 	public void init() {
-		Vendor vendor = vendorRepo.save(new Vendor("Olli's Gebtrauchtwagen Markt"));
+		Vendor vendor = vendorRepo.save(new Vendor("Olli's Gebrauchtwagen Markt"));
 
 		carRepo.save(new Car("Volkswagen", "Passat", "Schwarz", 2010, 140, vendor));
-		carRepo.save(new Car("Audi", "A6", "Silber", 2014, 320, vendor));
+		carRepo.save(new Car("Audi", "A6", "Silber", 2015, 320, vendor));
 		carRepo.save(new Car("BMW", "320d", "Weiß", 2015, 240, vendor));
 	}
 
