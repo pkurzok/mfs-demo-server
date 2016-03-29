@@ -3,10 +3,13 @@ package com.prodyna.mfs.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.google.common.collect.Lists;
@@ -36,5 +39,19 @@ public class CarController {
 	public Car getCar(@PathVariable String id) {
 		Car car = repository.findOne(id);
 		return car;
+	}
+
+	@ResponseStatus(value = HttpStatus.OK)
+	@RequestMapping(value = "/{id}", method = RequestMethod.POST, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+	public void changeColor(@PathVariable String id, @RequestParam(value = "color", required = false) String color) {
+
+		Car car = repository.findOne(id);
+		if (color != null && car != null) {
+			car.setColor(color);
+			repository.save(car);
+		}
+
+		System.out.println("changed color to: " + color);
+
 	}
 }
