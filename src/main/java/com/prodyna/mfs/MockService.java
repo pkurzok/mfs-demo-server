@@ -23,5 +23,4 @@ public class MockService {
 		carRepo.save(new Car("Audi", "A6", "Silber", 2015, 320, vendor));
 		carRepo.save(new Car("BMW", "320d", "Weiß", 2015, 240, vendor));
 	}
-
 }

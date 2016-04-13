@@ -6,6 +6,7 @@ package com.prodyna.mfs.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -23,7 +24,7 @@ public class Vendor {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private String id;
 
-	@OneToMany(mappedBy = "vendor")
+	@OneToMany(mappedBy = "vendor", cascade = CascadeType.ALL)
 	private List<Car> cars = new ArrayList<Car>();
 
 	private String name;

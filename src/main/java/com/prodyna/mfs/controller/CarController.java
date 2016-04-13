@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -39,6 +40,19 @@ public class CarController {
 	public Car getCar(@PathVariable String id) {
 		Car car = repository.findOne(id);
 		return car;
+	}
+
+	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public Car createCar(@RequestBody Car car) {
+
+		Car saved = repository.save(car);
+		return saved;
+	}
+
+	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+	@ResponseStatus(value = HttpStatus.NO_CONTENT)
+	public void deleteCar(@PathVariable String id) {
+		repository.delete(id);
 	}
 
 	@ResponseStatus(value = HttpStatus.OK)
